@@ -1,14 +1,16 @@
-file=open('task1.txt')
-a=file.readlines()
-answer=open('output1.txt','w')
-b=0
-for i in range(len(a)):
-    if b+int(a[i])<2020:
-        b+=int(a[i])
-        for j in range(i+1,len(a)):
-            if b+int(a[j])<2020:
-                b+=int(a[j])
-                for k in range(j+1,len(a)):
-                    if b+int(a[k])==2020:
-                        answer.writelines(int(a[i])*int(a[j])*int(a[k]))
-                        b=0
+a=open('task1.txt')
+a=a.readlines()
+a=list(map(lambda b: str(b)[:-1], a))
+a=[int(b) for b in a]
+res=[]
+for b in a:
+    for c in a:
+        for d in a:
+            if (b+c+d)==2020:
+                res.append(b*c*d)
+res = list(set(res))
+with open('output1.txt', 'w') as file:
+    for b in res:
+        file.write(str(b))
+        file.write('\n')
+file.close()
